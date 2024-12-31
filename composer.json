@@ -1,0 +1,90 @@
+{
+  "name": "maginium/module-foundation",
+  "description": "Maginium Foundation module for Magento 2. Provides utilities and integrations for extended functionality.",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Maginium",
+      "role": "Technical Support",
+      "email": "support@maginium.com",
+      "homepage": "https://www.maginium.com"
+    }
+  ],
+  "homepage": "https://www.maginium.com",
+  "support": {
+    "issues": "https://www.maginium.com/issues",
+    "source": "https://github.com/maginium/module-foundation",
+    "email": "support@maginium.com",
+    "docs": "https://docs.maginium.com/foundation"
+  },
+  "keywords": [
+    "foundation",
+    "magento",
+    "magento2",
+    "maginium",
+    "utilities",
+    "ecommerce"
+  ],
+  "prefer-stable": true,
+  "minimum-stability": "stable",
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "require": {
+    "php": ">=8.2",
+    "laravel/pint": "^1.13",
+    "tightenco/duster": "^3.0",
+    "spatie/ignition": "^1.15",
+    "swissup/module-ignition": "^1.1"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.5",
+    "phpunit/phpunit": "^10.3"
+  },
+  "autoload": {
+    "files": [
+      "src/registration.php",
+      "src/Interceptors/Setup/Models/Installer.php"
+    ],
+    "psr-4": {
+      "Maginium\\Foundation\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Maginium\\Foundation\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [],
+    "post-update-cmd": [],
+    "lint": [],
+    "test": [
+      "phpunit --stop-on-failure"
+    ],
+    "bench": [
+      "phpbench run tests\\Benchmark\\ --report=default"
+    ]
+  },
+  "extra": {
+    "magento-version": ">=2.4",
+    "classmap-authoritative": true,
+    "patches": {
+      "magento/foundation": {
+        "Fix for issue XYZ": "patches/foundation-fix.patch"
+      }
+    }
+  },
+  "archive": {
+    "exclude": [
+      "/tests",
+      "/.github",
+      "/.gitignore",
+      "/composer.lock",
+      "/phpunit.xml"
+    ]
+  }
+}

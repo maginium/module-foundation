@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Root element defining the schema for extensions -->
+    <xs:element name="extensions">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Each extension element follows the extensionDeclaration type -->
+                <xs:element
+          name="extension"
+          type="extensionDeclaration"
+          maxOccurs="unbounded"
+        />
+            </xs:sequence>
+        </xs:complexType>
+
+        <!-- Constraint to ensure that each extension has a unique name -->
+        <xs:unique name="uniqueExtensionName">
+            <xs:annotation>
+                <xs:documentation>
+                    Ensures that the 'name' element for each extension is unique.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="extension" />
+            <xs:field xpath="name" />
+        </xs:unique>
+    </xs:element>
+
+    <!-- Complex type for defining an individual extension -->
+    <xs:complexType name="extensionDeclaration">
+        <xs:annotation>
+            <xs:documentation>
+                Describes an individual extension's elements and associated metadata.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Required elements for extension metadata -->
+            <xs:element name="name" type="moduleNameDeclaration" />
+            <xs:element name="title" type="xs:string" />
+            <xs:element name="url" type="xs:string" minOccurs="0" />
+            <xs:element name="documentation" type="xs:string" minOccurs="0" />
+            <xs:element name="config_section" type="xs:string" minOccurs="0" />
+            <xs:element name="is_enabled_path" type="xs:string" minOccurs="0" />
+            <xs:element name="marketplace_url" type="xs:string" minOccurs="0" />
+            <xs:element
+        name="is_service"
+        type="xs:boolean"
+        minOccurs="0"
+        default="false"
+      />
+
+            <!-- Optional customer declaration for the extension -->
+            <xs:element
+        name="customer"
+        type="customerDeclaration"
+        minOccurs="0"
+      />
+
+            <!-- Optional metapackage declaration for the extension -->
+            <xs:element
+        name="metapackage"
+        type="metapackageDeclaration"
+        minOccurs="0"
+      />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Complex type for customer-specific declarations -->
+    <xs:complexType name="customerDeclaration">
+        <xs:annotation>
+            <xs:documentation>
+                Contains customer-specific attributes for an extension.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Required key for the customer declaration -->
+            <xs:element name="key" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Complex type for defining a metapackage -->
+    <xs:complexType name="metapackageDeclaration">
+        <xs:annotation>
+            <xs:documentation>
+                Describes a metapackage, which is a grouping of smaller modules.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- Required attributes for metapackage declaration -->
+            <xs:element name="composer_name" type="xs:string" />
+            <xs:element name="directory" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Simple type defining the pattern for module names -->
+    <xs:simpleType name="moduleNameDeclaration">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the naming convention for module names, allowing only uppercase letters at the start.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <!-- Pattern enforces uppercase letters followed by alphanumeric characters -->
+            <xs:pattern value="[A-Z]+[A-Za-z0-9]+" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
