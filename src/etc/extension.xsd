@@ -5,11 +5,7 @@
         <xs:complexType>
             <xs:sequence>
                 <!-- Each extension element follows the extensionDeclaration type -->
-                <xs:element
-          name="extension"
-          type="extensionDeclaration"
-          maxOccurs="unbounded"
-        />
+                <xs:element name="extension" type="extensionDeclaration" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
 
@@ -41,26 +37,13 @@
             <xs:element name="config_section" type="xs:string" minOccurs="0" />
             <xs:element name="is_enabled_path" type="xs:string" minOccurs="0" />
             <xs:element name="marketplace_url" type="xs:string" minOccurs="0" />
-            <xs:element
-        name="is_service"
-        type="xs:boolean"
-        minOccurs="0"
-        default="false"
-      />
+            <xs:element name="is_service" type="xs:boolean" minOccurs="0" default="false" />
 
             <!-- Optional customer declaration for the extension -->
-            <xs:element
-        name="customer"
-        type="customerDeclaration"
-        minOccurs="0"
-      />
+            <xs:element name="customer" type="customerDeclaration" minOccurs="0" />
 
             <!-- Optional metapackage declaration for the extension -->
-            <xs:element
-        name="metapackage"
-        type="metapackageDeclaration"
-        minOccurs="0"
-      />
+            <xs:element name="metapackage" type="metapackageDeclaration" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
 

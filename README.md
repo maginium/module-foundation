@@ -1,6 +1,7 @@
 # Maginium Foundation Module for Magento 2
 
-The **Maginium Foundation** is a foundational module for Magento 2, designed to provide essential utilities, integrations, and extended functionality for your Magento-based e-commerce application. This package acts as the core building block for various other Maginium modules.
+The **Maginium Foundation** is a foundational module for Magento 2, designed to provide essential utilities, integrations, and extended functionality
+for your Magento-based e-commerce application. This package acts as the core building block for various other Maginium modules.
 
 ---
 
@@ -43,13 +44,11 @@ Features
 
 Documentation
 
-For detailed documentation, visit the official project page:
-Maginium Foundation Documentation
+For detailed documentation, visit the official project page: Maginium Foundation Documentation
 
 Issue Tracking
 
-If you encounter any issues or bugs, please open an issue on our GitHub repository:
-GitHub Issues
+If you encounter any issues or bugs, please open an issue on our GitHub repository: GitHub Issues
 
 Contributing
 
@@ -70,8 +69,7 @@ This package is open-source and available under the MIT License.
 
 Contact
 
-For support or inquiries, please contact us at:
-Email: <support@maginium.com>
+For support or inquiries, please contact us at: Email: <support@maginium.com>
 
 Repository Info
 
@@ -83,8 +81,7 @@ Repository Info
 
 Security
 
-For security issues, please refer to our security page or contact us directly at:
-<support@maginium.com>
+For security issues, please refer to our security page or contact us directly at: <support@maginium.com>
 
 Compatibility
 
@@ -99,14 +96,14 @@ If you encounter issues during installation, try the following:
 
 composer clear-cache
 
-2.  Ensure Proper Permissions:
-    Ensure your system has the correct permissions to install and modify Magento files.
-3.  Composer Auth:
-    If you’re encountering authentication issues with private repositories, ensure that your Composer configuration includes the correct credentials.
+2.  Ensure Proper Permissions: Ensure your system has the correct permissions to install and modify Magento files.
+3.  Composer Auth: If you’re encountering authentication issues with private repositories, ensure that your Composer configuration includes the
+    correct credentials.
 
 Example Usage
 
-Once installed, you can begin using the foundation module to integrate with other Maginium modules or customize the basic functionalities for your Magento 2 application.
+Once installed, you can begin using the foundation module to integrate with other Maginium modules or customize the basic functionalities for your
+Magento 2 application.
 
 Support
 

@@ -31,21 +31,21 @@ class Status extends BaseStatus
      *
      * @var Loader
      */
-    private $loader;
+    private Loader $loader;
 
     /**
      * Module list.
      *
      * @var ModuleList
      */
-    private $list;
+    private ModuleList $list;
 
     /**
      * Deployment config writer.
      *
      * @var Writer
      */
-    private $writer;
+    private Writer $writer;
 
     /**
      * Constructor.

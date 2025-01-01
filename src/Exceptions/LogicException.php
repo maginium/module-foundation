@@ -87,7 +87,7 @@ class LogicException extends LocalizedException
     {
         return [
             'title' => $this->type,
-            'description' => $this->message,
+            'description' => $this->getMessage(),
             'links' => [
                 'More Info' => 'https://docs.maginium.com/errors/' . $this->type, // Example link
             ],

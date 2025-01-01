@@ -38,12 +38,12 @@ class StaticDeploy
     /**
      * @var Write The write directory instance for the root directory.
      */
-    protected $rootWrite;
+    protected Write $rootWrite;
 
     /**
      * @var Read The read directory instance for the root directory.
      */
-    protected $rootRead;
+    protected Read $rootRead;
 
     /**
      * StaticDeploy constructor.

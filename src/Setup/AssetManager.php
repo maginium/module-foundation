@@ -6,11 +6,9 @@ namespace Maginium\Foundation\Setup;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\App\ProductMetadataInterface;
 use Magento\Framework\App\State;
 use Magento\MediaGallerySynchronization\Model\GetAssetsIterator;
 use Magento\MediaGallerySynchronizationApi\Api\SynchronizeFilesInterface;
-use Maginium\Framework\Support\Facades\Container;
 use Maginium\Framework\Support\Facades\Filesystem;
 use Maginium\Framework\Support\Str;
 use SplFileInfo;
@@ -25,48 +23,33 @@ class AssetManager
     /**
      * @var State The state of the Magento application.
      */
-    protected State $state;
+    private State $state;
 
     /**
-     * @var ProductMetadataInterface Provides metadata about the product.
+     * @var GetAssetsIterator Iterator for retrieving assets from the media directory.
      */
-    protected ProductMetadataInterface $metadata;
+    private GetAssetsIterator $assetIterator;
 
     /**
-     * @var array List of file extensions to be processed.
+     * @var SynchronizeFilesInterface Interface for synchronizing media files.
      */
-    protected array $fileExtensions;
-
-    /**
-     * @var SynchronizeFilesInterface|null Interface for synchronizing media files.
-     */
-    protected ?SynchronizeFilesInterface $synchronizeFile = null;
-
-    /**
-     * @var GetAssetsIterator|null Iterator for retrieving assets from the media directory.
-     */
-    protected ?GetAssetsIterator $assetIterator = null;
+    private SynchronizeFilesInterface $synchronizeFile;
 
     /**
      * AssetManager constructor.
      *
      * @param  State  $state  The state of the Magento application.
-     * @param  ProductMetadataInterface  $metadata  Provides metadata about the product.
-     * @param  array  $fileExtensions  List of file extensions to be processed.
+     * @param  SynchronizeFilesInterface $synchronizeFile Interface for synchronizing media files.
+     * @param  GetAssetsIterator $assetIterator Iterator for retrieving assets from the media directory.
      */
     public function __construct(
         State $state,
-        ProductMetadataInterface $metadata,
-        array $fileExtensions,
+        GetAssetsIterator $assetIterator,
+        SynchronizeFilesInterface $synchronizeFile,
     ) {
-        // Initialize application state.
         $this->state = $state;
-
-        // Initialize product metadata.
-        $this->metadata = $metadata;
-
-        // Initialize file extensions.
-        $this->fileExtensions = $fileExtensions;
+        $this->assetIterator = $assetIterator;
+        $this->synchronizeFile = $synchronizeFile;
     }
 
     /**
@@ -81,9 +64,6 @@ class AssetManager
      */
     public function synchronizeMedia(string $directory, string $baseDir = DirectoryList::MEDIA): void
     {
-        // Initialize necessary objects before synchronizing files
-        $this->init();
-
         // Get the absolute path for the media assets directory
         $assetsPath = $this->getAssetsPath($directory, $baseDir);
 
@@ -158,20 +138,5 @@ class AssetManager
             // Execute the file synchronization process
             $this->synchronizeFile->execute($filesToProcess);
         });
-    }
-
-    /**
-     * Initialize necessary objects for asset processing.
-     *
-     * Resolves dependencies for asset iteration and file synchronization.
-     * This setup is necessary before media file processing can occur.
-     */
-    private function init(): void
-    {
-        // Resolve the asset iterator instance from the dependency injection container
-        $this->assetIterator = Container::resolve(GetAssetsIterator::class);
-
-        // Resolve the file synchronization interface from the dependency injection container
-        $this->synchronizeFile = Container::resolve(SynchronizeFilesInterface::class);
     }
 }

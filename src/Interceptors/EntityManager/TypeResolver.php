@@ -26,7 +26,7 @@ class TypeResolver extends BaseTypeResolver
     /**
      * @var MetadataPool The metadata pool used to fetch metadata configurations for data interfaces.
      */
-    private $metadataPool;
+    private MetadataPool $metadataPool;
 
     /**
      * @var array Maps concrete model classes to their corresponding data interface classes.

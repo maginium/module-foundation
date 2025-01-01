@@ -88,7 +88,7 @@ class LocalizedException extends BaseException
     {
         return [
             'title' => $this->type,
-            'message' => $this->message,
+            'message' => $this->getMessage(),
             'documentationLinks' => [
                 'More Info' => 'https://docs.maginium.com/errors/' . $this->type, // Example link
             ],

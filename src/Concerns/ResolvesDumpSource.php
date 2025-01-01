@@ -15,7 +15,7 @@ trait ResolvesDumpSource
      *
      * @var array<string, int>
      */
-    protected static $adjustableTraces = [
+    protected static array $adjustableTraces = [
         // Specific file names with their respective trace adjustment level
         'symfony/var-dumper/Resources/functions/dump.php' => 1,
         'Illuminate/Collections/Traits/EnumeratesValues.php' => 4,
@@ -26,7 +26,7 @@ trait ResolvesDumpSource
      *
      * @var (callable(): (array{0: string, 1: string, 2: int|null}|null))|null|false
      */
-    protected static $dumpSourceResolver;
+    protected static mixed $dumpSourceResolver;
 
     /**
      * All of the href formats for common editors.
@@ -34,22 +34,22 @@ trait ResolvesDumpSource
      *
      * @var array<string, string>
      */
-    protected $editorHrefs = [
-        'atom' => 'atom://core/open/file?filename={file}&line={line}', // Atom editor
-        'emacs' => 'emacs://open?url=file://{file}&line={line}', // Emacs editor
-        'idea' => 'idea://open?file={file}&line={line}', // IntelliJ IDEA
-        'macvim' => 'mvim://open/?url=file://{file}&line={line}', // MacVim editor
-        'netbeans' => 'netbeans://open/?f={file}:{line}', // NetBeans IDE
-        'nova' => 'nova://core/open/file?filename={file}&line={line}', // Nova editor
-        'phpstorm' => 'phpstorm://open?file={file}&line={line}', // PhpStorm IDE
-        'sublime' => 'subl://open?url=file://{file}&line={line}', // Sublime Text editor
-        'textmate' => 'txmt://open?url=file://{file}&line={line}', // TextMate editor
+    protected array $editorHrefs = [
         'vscode' => 'vscode://file/{file}:{line}', // Visual Studio Code
-        'vscode-insiders' => 'vscode-insiders://file/{file}:{line}', // VS Code Insiders
-        'vscode-insiders-remote' => 'vscode-insiders://vscode-remote/{file}:{line}', // Remote VS Code Insiders
-        'vscode-remote' => 'vscode://vscode-remote/{file}:{line}', // Remote VS Code
         'vscodium' => 'vscodium://file/{file}:{line}', // VSCodium editor
         'xdebug' => 'xdebug://{file}@{line}', // Xdebug with file and line
+        'idea' => 'idea://open?file={file}&line={line}', // IntelliJ IDEA
+        'netbeans' => 'netbeans://open/?f={file}:{line}', // NetBeans IDE
+        'emacs' => 'emacs://open?url=file://{file}&line={line}', // Emacs editor
+        'phpstorm' => 'phpstorm://open?file={file}&line={line}', // PhpStorm IDE
+        'macvim' => 'mvim://open/?url=file://{file}&line={line}', // MacVim editor
+        'vscode-remote' => 'vscode://vscode-remote/{file}:{line}', // Remote VS Code
+        'textmate' => 'txmt://open?url=file://{file}&line={line}', // TextMate editor
+        'atom' => 'atom://core/open/file?filename={file}&line={line}', // Atom editor
+        'nova' => 'nova://core/open/file?filename={file}&line={line}', // Nova editor
+        'sublime' => 'subl://open?url=file://{file}&line={line}', // Sublime Text editor
+        'vscode-insiders' => 'vscode-insiders://file/{file}:{line}', // VS Code Insiders
+        'vscode-insiders-remote' => 'vscode-insiders://vscode-remote/{file}:{line}', // Remote VS Code Insiders
     ];
 
     /**
@@ -60,7 +60,7 @@ trait ResolvesDumpSource
      *
      * @return void
      */
-    public static function resolveDumpSourceUsing($callable)
+    public static function resolveDumpSourceUsing($callable): void
     {
         // Store the callable to resolve the dump source dynamically
         static::$dumpSourceResolver = $callable;
@@ -72,7 +72,7 @@ trait ResolvesDumpSource
      *
      * @return void
      */
-    public static function dontIncludeSource()
+    public static function dontIncludeSource(): void
     {
         // Set the resolver to false, effectively disabling source resolution
         static::$dumpSourceResolver = false;
@@ -84,11 +84,11 @@ trait ResolvesDumpSource
      *
      * @return array{0: string, 1: string, 2: int|null}|null
      */
-    public function resolveDumpSource()
+    public function resolveDumpSource(): mixed
     {
         // If the source resolver is explicitly disabled, return nothing
         if (static::$dumpSourceResolver === false) {
-            return;
+            return null;
         }
 
         // If a source resolver is set, invoke it to resolve the source
@@ -127,7 +127,7 @@ trait ResolvesDumpSource
 
         // If no source key was found, return nothing
         if ($sourceKey === null) {
-            return;
+            return null;
         }
 
         // Get the file and line from the resolved trace
@@ -136,7 +136,7 @@ trait ResolvesDumpSource
 
         // If the file or line is missing, return nothing
         if ($file === null || $line === null) {
-            return;
+            return null;
         }
 
         // Set the relative file path
@@ -160,7 +160,7 @@ trait ResolvesDumpSource
      *
      * @return string|null
      */
-    protected function resolveSourceHref($file, $line)
+    protected function resolveSourceHref($file, $line): ?string
     {
         try {
             // Get the configured editor from the app configuration
@@ -171,7 +171,7 @@ trait ResolvesDumpSource
 
         // If no editor is configured, return nothing
         if (! isset($editor)) {
-            return;
+            return null;
         }
 
         // Get the href format for the editor (fall back to default if not set)

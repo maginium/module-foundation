@@ -71,7 +71,7 @@ class Exception extends BaseException
 
         // Call the parent constructor with the resolved values
         parent::__construct(
-            $this->message, // Use the resolved message
+            $this->getMessage(), // Use the resolved message
             (int)($code ?? $this->statusCode), // Use the provided code or fallback to the status code
             $cause, // Pass the original exception (if any) for better traceability
         );
@@ -148,8 +148,8 @@ class Exception extends BaseException
         return [
             'type' => $this->type, // The type of error (e.g., 'ValidationError', 'DatabaseError')
             'message' => $this->getMessage(), // The error message
-            'status_code' => $this->statusCode, // The HTTP status code (e.g., 500)
-            'context' => $this->context, // Any additional metadata or context
+            'status_code' => $this->getStatusCode(), // The HTTP status code (e.g., 500)
+            'context' => $this->getContext(), // Any additional metadata or context
             'documentation_link' => 'https://docs.maginium.com/errors/' . $this->type, // Link to documentation
         ];
     }

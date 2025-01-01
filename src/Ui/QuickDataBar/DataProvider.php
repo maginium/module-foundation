@@ -17,14 +17,12 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 class DataProvider
 {
     /**
-     * @var ResourceConnection
-     *                         The resource connection object, used to interact with the database.
+     * @var ResourceConnection The resource connection object, used to interact with the database.
      */
     private ResourceConnection $resource;
 
     /**
-     * @var PriceCurrencyInterface
-     *                             The currency formatter interface used to format amounts as currency.
+     * @var PriceCurrencyInterface The currency formatter interface used to format amounts as currency.
      */
     private PriceCurrencyInterface $currency;
 
@@ -40,6 +38,8 @@ class DataProvider
         ResourceConnection $resource,
         PriceCurrencyInterface $currency,
     ) {
+        $this->resource = $resource;
+        $this->currency = $currency;
     }
 
     /**

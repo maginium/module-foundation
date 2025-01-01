@@ -20,6 +20,7 @@ use Maginium\Framework\Support\Php;
 use Maginium\Framework\Support\Str;
 use Maginium\Framework\Support\Validator;
 use Spatie\Ignition\Contracts\ProvidesSolution;
+use stdClass;
 use Throwable;
 
 /**
@@ -73,28 +74,28 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
      * @var Exception mask used when this exception is acting as a mask,
      *                this property stores the face exception.
      */
-    protected $mask;
+    protected Exception $mask;
 
     /**
      * @var array fileContent relating to the exception, each value of the array is a file
      *            line number.
      */
-    protected $fileContent = [];
+    protected array $fileContent = [];
 
     /**
      * @var string className of the called Exception.
      */
-    protected $className;
+    protected string $className;
 
     /**
      * @var string errorType derived from the error code, will be 'Undefined' if no code is used.
      */
-    protected $errorType;
+    protected string $errorType;
 
     /**
-     * @var stdObject highlight cached code information for highlighting code.
+     * @var stdClass highlight cached code information for highlighting code.
      */
-    protected $highlight;
+    protected stdClass $highlight;
 
     /**
      * Creates a standardized error instance.
@@ -184,7 +185,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
     {
         return [
             'type' => $this->type,
-            'message' => $this->message,
+            'message' => $this->getMessage(),
             'code' => $this->code,
             'date' => $this->date->format(DateTime::ATOM),
             'requestId' => $this->requestId,
@@ -441,7 +442,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
             '[%s] [%s] %s',
             $this->date->format(DateTime::ATOM),
             $this->requestId,
-            $this->message,
+            $this->getMessage(),
         ), [
             'type' => $this->type,
             'code' => $this->code,

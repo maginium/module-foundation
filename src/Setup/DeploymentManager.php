@@ -32,12 +32,7 @@ abstract class DeploymentManager implements InstallDataInterface
     /**
      * @var StaticDeploy Helper class for deploying static files to the public directory.
      */
-    protected StaticDeploy $pubDeployer;
-
-    /**
-     * @var AssetManager Helper class for managing media assets and ensuring synchronization.
-     */
-    protected AssetManager $assetManager;
+    private StaticDeploy $pubDeployer;
 
     /**
      * DeploymentManager constructor.
@@ -45,14 +40,11 @@ abstract class DeploymentManager implements InstallDataInterface
      * Initializes the necessary helper classes for asset deployment and media synchronization.
      *
      * @param  StaticDeploy  $pubDeployer  Helper class for deploying static files.
-     * @param  AssetManager  $assetManager  Helper class for synchronizing media assets.
      */
     public function __construct(
         StaticDeploy $pubDeployer,
-        AssetManager $assetManager,
     ) {
         $this->pubDeployer = $pubDeployer;
-        $this->assetManager = $assetManager;
 
         // Set Log class name
         Log::setClassName(static::class);

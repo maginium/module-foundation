@@ -23,13 +23,16 @@ class Color extends Field
      */
     protected function _getElementHtml(AbstractElement $element): string
     {
+        // Render the default HTML
         $html = parent::_getElementHtml($element);
 
         // Default to white if no value is set
         $value = $element->getData('value') ?: '#ffffff';
 
+        // Append the color picker script
         $html .= $this->generateColorPickerScript($element->getHtmlId(), $value);
 
+        // Return the rendered HTML
         return $html;
     }
 

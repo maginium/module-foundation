@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Solutions;
 
+use Maginium\Foundation\Interfaces\SolutionInterface;
 use Spatie\ErrorSolutions\Contracts\BaseSolution as SpatieBaseSolution;
-use Spatie\Ignition\Contracts\Solution as SolutionInterface;
 
 /**
  * Class Solution.
@@ -15,27 +15,6 @@ use Spatie\Ignition\Contracts\Solution as SolutionInterface;
 class Solution extends SpatieBaseSolution implements SolutionInterface
 {
     /**
-     * The key for the solution's title.
-     *
-     * @var string
-     */
-    public const KEY_TITLE = 'title';
-
-    /**
-     * The key for the solution's description.
-     *
-     * @var string
-     */
-    public const KEY_DESCRIPTION = 'description';
-
-    /**
-     * The key for the solution's documentation links.
-     *
-     * @var string
-     */
-    public const KEY_LINKS = 'links';
-
-    /**
      * Set the solution's data based on the provided associative array.
      *
      * @param  array  $data  An associative array containing solution data (title, description, and links).
@@ -43,16 +22,16 @@ class Solution extends SpatieBaseSolution implements SolutionInterface
     public function setData(array $data = []): static
     {
         // Set the title, defaulting to the current title if not provided
-        $this->setSolutionTitle($data[self::KEY_TITLE] ?? $this->title);
+        $this->setSolutionTitle($data[self::TITLE] ?? $this->title);
 
         // Set description if it exists in the data
-        if (isset($data[self::KEY_DESCRIPTION])) {
-            $this->setSolutionDescription($data[self::KEY_DESCRIPTION]);
+        if (isset($data[self::DESCRIPTION])) {
+            $this->setSolutionDescription($data[self::DESCRIPTION]);
         }
 
         // Set documentation links if they exist in the data
-        if (isset($data[self::KEY_LINKS])) {
-            $this->setDocumentationLinks($data[self::KEY_LINKS]);
+        if (isset($data[self::LINKS])) {
+            $this->setDocumentationLinks($data[self::LINKS]);
         }
 
         return $this;

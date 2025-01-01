@@ -125,18 +125,7 @@
       ],
       "description": "PHP Doctrine Inflector is a small library that can perform string manipulations with regard to upper/lowercase and singular/plural forms of words.",
       "homepage": "https://www.doctrine-project.org/projects/inflector.html",
-      "keywords": [
-        "inflection",
-        "inflector",
-        "lowercase",
-        "manipulation",
-        "php",
-        "plural",
-        "singular",
-        "strings",
-        "uppercase",
-        "words"
-      ],
+      "keywords": ["inflection", "inflector", "lowercase", "manipulation", "php", "plural", "singular", "strings", "uppercase", "words"],
       "support": {
         "issues": "https://github.com/doctrine/inflector/issues",
         "source": "https://github.com/doctrine/inflector/tree/2.0.10"
@@ -562,18 +551,7 @@
       ],
       "description": "Mockery is a simple yet flexible PHP mock object framework",
       "homepage": "https://github.com/mockery/mockery",
-      "keywords": [
-        "BDD",
-        "TDD",
-        "library",
-        "mock",
-        "mock objects",
-        "mockery",
-        "stub",
-        "test",
-        "test double",
-        "testing"
-      ],
+      "keywords": ["BDD", "TDD", "library", "mock", "mock objects", "mockery", "stub", "test", "test double", "testing"],
       "support": {
         "docs": "https://docs.mockery.io/",
         "issues": "https://github.com/mockery/mockery/issues",
@@ -1343,13 +1321,7 @@
       ],
       "description": "Common Container Interface (PHP FIG PSR-11)",
       "homepage": "https://github.com/php-fig/container",
-      "keywords": [
-        "PSR-11",
-        "container",
-        "container-interface",
-        "container-interop",
-        "psr"
-      ],
+      "keywords": ["PSR-11", "container", "container-interface", "container-interop", "psr"],
       "support": {
         "issues": "https://github.com/php-fig/container/issues",
         "source": "https://github.com/php-fig/container/tree/2.0.2"
@@ -3013,14 +2985,7 @@
       ],
       "description": "Symfony polyfill for intl's grapheme_* functions",
       "homepage": "https://symfony.com",
-      "keywords": [
-        "compatibility",
-        "grapheme",
-        "intl",
-        "polyfill",
-        "portable",
-        "shim"
-      ],
+      "keywords": ["compatibility", "grapheme", "intl", "polyfill", "portable", "shim"],
       "support": {
         "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.31.0"
       },
@@ -3092,14 +3057,7 @@
       ],
       "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
       "homepage": "https://symfony.com",
-      "keywords": [
-        "compatibility",
-        "idn",
-        "intl",
-        "polyfill",
-        "portable",
-        "shim"
-      ],
+      "keywords": ["compatibility", "idn", "intl", "polyfill", "portable", "shim"],
       "support": {
         "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.31.0"
       },
@@ -3167,14 +3125,7 @@
       ],
       "description": "Symfony polyfill for intl's Normalizer class and related functions",
       "homepage": "https://symfony.com",
-      "keywords": [
-        "compatibility",
-        "intl",
-        "normalizer",
-        "polyfill",
-        "portable",
-        "shim"
-      ],
+      "keywords": ["compatibility", "intl", "normalizer", "polyfill", "portable", "shim"],
       "support": {
         "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.31.0"
       },
@@ -3438,14 +3389,7 @@
       ],
       "description": "Generic abstractions related to writing services",
       "homepage": "https://symfony.com",
-      "keywords": [
-        "abstractions",
-        "contracts",
-        "decoupling",
-        "interfaces",
-        "interoperability",
-        "standards"
-      ],
+      "keywords": ["abstractions", "contracts", "decoupling", "interfaces", "interoperability", "standards"],
       "support": {
         "source": "https://github.com/symfony/service-contracts/tree/v3.5.1"
       },
@@ -3675,14 +3619,7 @@
       ],
       "description": "Generic abstractions related to translation",
       "homepage": "https://symfony.com",
-      "keywords": [
-        "abstractions",
-        "contracts",
-        "decoupling",
-        "interfaces",
-        "interoperability",
-        "standards"
-      ],
+      "keywords": ["abstractions", "contracts", "decoupling", "interfaces", "interoperability", "standards"],
       "support": {
         "source": "https://github.com/symfony/translation-contracts/tree/v3.5.1"
       },

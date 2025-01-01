@@ -1,34 +1,15 @@
 <?xml version="1.0" ?>
-<config
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd"
->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <!-- Define system configuration -->
     <system>
         <!-- Define section for web configuration -->
         <section id="web">
             <!-- Define group for secure base URLs -->
-            <group
-        id="secure"
-        showInDefault="1"
-        showInStore="1"
-        showInWebsite="1"
-        sortOrder="10"
-        translate="label comment"
-        type="text"
-      >
+            <group id="secure" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment" type="text">
                 <!-- Label for the group -->
                 <label>Base URLs</label>
                 <!-- Define field for secure PWA URL -->
-                <field
-          id="pwa_url"
-          showInDefault="1"
-          showInStore="1"
-          showInWebsite="1"
-          sortOrder="15"
-          translate="label comment"
-          type="text"
-        >
+                <field id="pwa_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" translate="label comment" type="text">
                     <!-- Label for the field -->
                     <label>Secure PWA URL</label>
                     <!-- Comment for the field -->
@@ -39,27 +20,11 @@
             </group>
 
             <!-- Define group for unsecure base URLs -->
-            <group
-        id="unsecure"
-        showInDefault="1"
-        showInStore="1"
-        showInWebsite="1"
-        sortOrder="10"
-        translate="label comment"
-        type="text"
-      >
+            <group id="unsecure" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment" type="text">
                 <!-- Label for the group -->
                 <label>Base URLs</label>
                 <!-- Define field for PWA URL -->
-                <field
-          id="pwa_url"
-          showInDefault="1"
-          showInStore="1"
-          showInWebsite="1"
-          sortOrder="15"
-          translate="label comment"
-          type="text"
-        >
+                <field id="pwa_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" translate="label comment" type="text">
                     <!-- Label for the field -->
                     <label>PWA URL</label>
                     <!-- Comment for the field -->
