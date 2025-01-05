@@ -7,6 +7,12 @@ namespace Maginium\Foundation\Concerns;
 use Maginium\Framework\Support\Facades\Config;
 use Throwable;
 
+/**
+ * Trait ResolvesDumpSource.
+ *
+ * Provides functionality to resolve the source of dumps for debugging purposes.
+ * This includes special handling for trace files and editor URL formats to open files directly.
+ */
 trait ResolvesDumpSource
 {
     /**
@@ -15,7 +21,7 @@ trait ResolvesDumpSource
      *
      * @var array<string, int>
      */
-    protected static array $adjustableTraces = [
+    protected static $adjustableTraces = [
         // Specific file names with their respective trace adjustment level
         'symfony/var-dumper/Resources/functions/dump.php' => 1,
         'Illuminate/Collections/Traits/EnumeratesValues.php' => 4,
@@ -26,7 +32,7 @@ trait ResolvesDumpSource
      *
      * @var (callable(): (array{0: string, 1: string, 2: int|null}|null))|null|false
      */
-    protected static mixed $dumpSourceResolver;
+    protected static $dumpSourceResolver;
 
     /**
      * All of the href formats for common editors.
@@ -34,7 +40,7 @@ trait ResolvesDumpSource
      *
      * @var array<string, string>
      */
-    protected array $editorHrefs = [
+    protected $editorHrefs = [
         'vscode' => 'vscode://file/{file}:{line}', // Visual Studio Code
         'vscodium' => 'vscodium://file/{file}:{line}', // VSCodium editor
         'xdebug' => 'xdebug://{file}@{line}', // Xdebug with file and line
@@ -60,7 +66,7 @@ trait ResolvesDumpSource
      *
      * @return void
      */
-    public static function resolveDumpSourceUsing($callable): void
+    public static function resolveDumpSourceUsing($callable)
     {
         // Store the callable to resolve the dump source dynamically
         static::$dumpSourceResolver = $callable;
@@ -72,7 +78,7 @@ trait ResolvesDumpSource
      *
      * @return void
      */
-    public static function dontIncludeSource(): void
+    public static function dontIncludeSource()
     {
         // Set the resolver to false, effectively disabling source resolution
         static::$dumpSourceResolver = false;
@@ -84,11 +90,11 @@ trait ResolvesDumpSource
      *
      * @return array{0: string, 1: string, 2: int|null}|null
      */
-    public function resolveDumpSource(): mixed
+    public function resolveDumpSource()
     {
         // If the source resolver is explicitly disabled, return nothing
         if (static::$dumpSourceResolver === false) {
-            return null;
+            return;
         }
 
         // If a source resolver is set, invoke it to resolve the source
@@ -127,7 +133,7 @@ trait ResolvesDumpSource
 
         // If no source key was found, return nothing
         if ($sourceKey === null) {
-            return null;
+            return;
         }
 
         // Get the file and line from the resolved trace
@@ -136,7 +142,7 @@ trait ResolvesDumpSource
 
         // If the file or line is missing, return nothing
         if ($file === null || $line === null) {
-            return null;
+            return;
         }
 
         // Set the relative file path
@@ -160,7 +166,7 @@ trait ResolvesDumpSource
      *
      * @return string|null
      */
-    protected function resolveSourceHref($file, $line): ?string
+    protected function resolveSourceHref($file, $line)
     {
         try {
             // Get the configured editor from the app configuration
@@ -171,7 +177,7 @@ trait ResolvesDumpSource
 
         // If no editor is configured, return nothing
         if (! isset($editor)) {
-            return null;
+            return;
         }
 
         // Get the href format for the editor (fall back to default if not set)
