@@ -8,10 +8,6 @@ use ArrayAccess;
 
 /**
  * Universal data container with array access implementation.
- *
- * @SuppressWarnings(PHPMD.NumberOfChildren)
- *
- * @since 100.0.2
  */
 interface DataObjectInterface extends ArrayAccess
 {

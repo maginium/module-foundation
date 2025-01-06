@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Concerns;
 
+use Maginium\Framework\Config\Enums\ConfigDrivers;
 use Maginium\Framework\Support\Facades\Config;
 use Throwable;
 
@@ -170,7 +171,7 @@ trait ResolvesDumpSource
     {
         try {
             // Get the configured editor from the app configuration
-            $editor = Config::getString('app.editor');
+            $editor = Config::driver(ConfigDrivers::ENV)->getString('app.editor', null);
         } catch (Throwable) {
             // Ignore any exceptions while fetching the editor config
         }

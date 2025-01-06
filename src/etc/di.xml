@@ -1,18 +1,13 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- overriding for Status class -->
+    <!-- Overriding for Status class -->
     <preference for="Magento\Framework\Module\Status" type="Maginium\Foundation\Interceptors\Framework\Module\Status" />
 
-    <!-- overriding for TypeResolver class -->
+    <!-- Overriding for TypeResolver class -->
     <preference for="Magento\Framework\EntityManager\TypeResolver" type="Maginium\Foundation\Interceptors\EntityManager\TypeResolver" />
 
-    <!-- overriding for ServiceInputProcessor class -->
+    <!-- Overriding for ServiceInputProcessor class -->
     <preference for="Magento\Framework\Webapi\ServiceInputProcessor" type="Maginium\Foundation\Interceptors\Framework\Webapi\ServiceInputProcessor" />
-
-    <!-- Dumper Interceptor -->
-    <type name="Magento\Framework\App\Http">
-        <plugin name="register_dumpers" type="Maginium\Foundation\Interceptors\App\RegisterDumpers" />
-    </type>
 
     <!-- Configure AssetManager arguments -->
     <type name="Maginium\Foundation\Setup\AssetManager">
@@ -36,6 +31,20 @@
 
                 <!-- JPEG files -->
                 <item xsi:type="string" name="jpeg">jpeg</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Configure providers for the ServiceProviderManager -->
+    <type name="Maginium\Framework\Application\ServiceProviderManager">
+        <arguments>
+            <!-- List of service providers to be registered -->
+            <argument xsi:type="array" name="providers">
+                <!-- Dumper service provider -->
+                <item xsi:type="object" name="dumper_service_provider">Maginium\Foundation\Providers\DumpersServiceProvider</item>
+
+                <!-- Foundation service provider -->
+                <item xsi:type="object" name="foundation_service_provider">Maginium\Foundation\Providers\FoundationServiceProvider</item>
             </argument>
         </arguments>
     </type>
