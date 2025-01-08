@@ -85,12 +85,12 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
     /**
      * @var string className of the called Exception.
      */
-    protected string $className;
+    protected ?string $className = null;
 
     /**
      * @var string errorType derived from the error code, will be 'Undefined' if no code is used.
      */
-    protected string $errorType;
+    protected ?string $errorType = null;
 
     /**
      * @var stdClass highlight cached code information for highlighting code.

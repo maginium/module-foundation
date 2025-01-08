@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Maginium\Foundation\Abstracts;
+namespace Maginium\Foundation\Abstracts\Middleware;
 
 use Closure;
 use Magento\Framework\App\ResponseInterface as BaseResponseInterface;

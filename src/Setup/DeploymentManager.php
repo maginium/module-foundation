@@ -15,6 +15,7 @@ use Maginium\Framework\Support\Facades\Filesystem;
 use Maginium\Framework\Support\Facades\Log;
 use Maginium\Framework\Support\Path;
 use Maginium\Framework\Support\Reflection;
+use Maginium\Framework\Support\Str;
 
 /**
  * Abstract class DeploymentManager.
@@ -83,7 +84,7 @@ abstract class DeploymentManager implements InstallDataInterface
             $this->pubDeployer->deployFolder($publicAssetsPath);
         } else {
             Log::warning(
-                sprintf('Public assets directory not found at %s. Skipping deployment.', $publicAssetsPath),
+                Str::format('Public assets directory not found at %s. Skipping deployment.', $publicAssetsPath),
             );
         }
 

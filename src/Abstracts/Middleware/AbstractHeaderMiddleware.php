@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Maginium\Foundation\Abstracts;
+namespace Maginium\Foundation\Abstracts\Middleware;
 
 use Magento\Store\Api\Data\StoreInterface;
 use Maginium\Foundation\Exceptions\NotFoundException;
+use Maginium\Framework\Config\Enums\ConfigDrivers;
 use Maginium\Framework\Request\Interfaces\RequestInterface;
 use Maginium\Framework\Response\Interfaces\ResponseInterface;
 use Maginium\Framework\Support\Facades\Config;
@@ -101,7 +102,7 @@ abstract class AbstractHeaderMiddleware extends AbstractMiddleware
         $urlParts = Php::explode(SP, trim($urlPath, SP));
 
         // Retrieve supported API versions from configuration.
-        $apiVersions = Config::getArray('API_VERSIONS');
+        $apiVersions = Config::driver(ConfigDrivers::ENV)->getArray('API_VERSIONS');
 
         // Check if the second part of the URL contains a valid store code.
         if (! Validator::isEmpty($urlParts[1])) {

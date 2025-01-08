@@ -36,6 +36,11 @@ class InvalidArgumentException extends LocalizedException
         string|int|null $code = null,
         ?array $context = null,
     ) {
+        // If message is a string, make it an instance of __() for translation
+        if (is_string($message)) {
+            $message = __($message); // Assuming __() is a translation function
+        }
+
         // Call the parent constructor with necessary parameters
         parent::__construct(
             $message, // The error message

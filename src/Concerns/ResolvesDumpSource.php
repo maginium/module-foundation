@@ -6,6 +6,7 @@ namespace Maginium\Foundation\Concerns;
 
 use Maginium\Framework\Config\Enums\ConfigDrivers;
 use Maginium\Framework\Support\Facades\Config;
+use Maginium\Framework\Support\Str;
 use Throwable;
 
 /**
@@ -184,7 +185,7 @@ trait ResolvesDumpSource
         // Get the href format for the editor (fall back to default if not set)
         $href = is_array($editor) && isset($editor['href'])
             ? $editor['href']
-            : ($this->editorHrefs[$editor['name'] ?? $editor] ?? sprintf('%s://open?file={file}&line={line}', $editor['name'] ?? $editor));
+            : ($this->editorHrefs[$editor['name'] ?? $editor] ?? Str::format('%s://open?file={file}&line={line}', $editor['name'] ?? $editor));
 
         // If a base path is configured, adjust the file path
         if ($basePath = $editor['base_path'] ?? false) {

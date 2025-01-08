@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Maginium\Foundation\Abstracts;
+namespace Maginium\Foundation\Abstracts\Observer;
 
 use Exception;
 use Magento\Framework\Event\Observer;
@@ -22,6 +22,11 @@ use Maginium\Framework\Support\Validator;
  */
 abstract class AbstractObserver implements ObserverInterface
 {
+    /**
+     * Key for 'data'.
+     */
+    public const DATA = 'data';
+
     /**
      * The name of the event that triggered the observer.
      *
@@ -98,30 +103,6 @@ abstract class AbstractObserver implements ObserverInterface
         $this->eventName = $this->event->getName();
 
         // Retrieve the associated data object from the event.
-        $this->data = $this->prepareData($observer->getData('data'));
-    }
-
-    /**
-     * Prepare the data by converting nested arrays into DataObject instances.
-     *
-     * @param mixed $data The input data to process.
-     *
-     * @return mixed The prepared data with arrays converted to DataObject instances.
-     */
-    protected function prepareData(mixed $data): mixed
-    {
-        // If the data is an array, iterate over it
-        if (Validator::isArray($data)) {
-            foreach ($data as $key => $value) {
-                // Recursively process each value in the array
-                $data[$key] = $this->prepareData($value);
-            }
-
-            // Convert the array into a DataObject
-            return DataObject::make($data);
-        }
-
-        // If the data is not an array, return it as-is
-        return $data;
+        $this->data = DataObject::make($observer->getData(static::DATA));
     }
 }

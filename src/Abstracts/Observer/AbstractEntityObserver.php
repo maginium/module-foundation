@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Maginium\Foundation\Abstracts;
+namespace Maginium\Foundation\Abstracts\Observer;
 
 use Magento\Framework\Event\Observer;
 use Maginium\Foundation\Exceptions\Exception;
