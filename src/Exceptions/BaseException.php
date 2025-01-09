@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Maginium\Foundation\Exceptions;
 
 use DateTime;
-use Exception;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonException;

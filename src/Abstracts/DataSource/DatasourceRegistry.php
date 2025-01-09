@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Magento\Framework\Exception\ConfigurationMismatchException;
 use Maginium\Foundation\Exceptions\InvalidArgumentException;
 use Maginium\Foundation\Interfaces\DataSourceInterface;
+use Maginium\Framework\Support\Arr;
 use Maginium\Framework\Support\Facades\Container;
 use Maginium\Framework\Support\Reflection;
 use Maginium\Framework\Support\Str;
@@ -156,7 +157,7 @@ abstract class DatasourceRegistry extends Collection
             if (isset($this->items[$resolvedKey])) {
                 // If the value is an array and the existing value is also an array, merge them
                 if (Validator::isArray($value)) {
-                    $this->items[$resolvedKey] = array_merge($this->items[$resolvedKey], $value);
+                    $this->items[$resolvedKey] = Arr::merge($this->items[$resolvedKey], $value);
                 } elseif (Validator::isString($value)) {
                     // Get the class name
                     $keyName = Reflection::getShortName($value);

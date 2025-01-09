@@ -52,33 +52,6 @@ class InvalidArgumentException extends LocalizedException
     }
 
     /**
-     * Static factory method to create a new instance of InvalidArgumentException.
-     *
-     * @param  string|Phrase  $message  The error message encapsulated in a Phrase object.
-     * @param  Throwable|null  $cause  The original exception that caused this exception (optional).
-     * @param  int|null  $statusCode  The status code for the error (optional).
-     * @param  string|int|null  $code  The error code associated with the exception (optional).
-     * @param  string[]|null  $context  Additional context or data related to the exception (optional).
-     *
-     * @throws self The newly created InvalidArgumentException instance.
-     */
-    public static function make(
-        string|Phrase $message,
-        ?Throwable $cause = null,
-        ?int $statusCode = null,
-        string|int|null $code = null,
-        ?array $context = null,
-    ): self {
-        return new self(
-            $message,
-            $cause,
-            $statusCode ?? HttpStatusCode::BAD_REQUEST, // Default to 400 Bad Request if no statusCode provided
-            $code,
-            $context,
-        );
-    }
-
-    /**
      * Creates a new array representing a solution.
      *
      * @return array An associative array containing the solution details.

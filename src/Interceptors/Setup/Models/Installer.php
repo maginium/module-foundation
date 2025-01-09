@@ -73,6 +73,7 @@ use Magento\Setup\Validator\DbValidator;
 use Magento\Store\Model\Store;
 use Maginium\Foundation\Exceptions\Exception;
 use Maginium\Foundation\Exceptions\LogicException;
+use Maginium\Framework\Support\Arr;
 use ReflectionException;
 use Zend_Db_Exception;
 
@@ -404,7 +405,7 @@ class Installer
             $script[] = ['Enabling Update by Schedule Indexer Mode...', 'setIndexerModeSchedule', []];
         }
         $estimatedModules = $this->createModulesConfig($request, true);
-        $total = count($script) + 4 * count(array_filter($estimatedModules));
+        $total = count($script) + 4 * count(Arr::filter($estimatedModules));
         $this->progress = new Progress($total, 0);
 
         $this->log->log('Starting Magento installation:');
@@ -941,7 +942,7 @@ class Installer
     private function createModulesConfig($request, $dryRun = false)
     {
         // Load all available modules
-        $allModules = array_keys($this->moduleLoader->load());
+        $allModules = Arr::keys($this->moduleLoader->load());
 
         // Load current modules configuration
         $deploymentConfig = $this->deploymentConfigReader->load();
@@ -1864,7 +1865,7 @@ class Installer
      */
     private function isAdminDataSet($request)
     {
-        $adminData = array_filter(
+        $adminData = Arr::filter(
             $request,
             fn($value, $key) => in_array(
                 $key,
@@ -1968,7 +1969,7 @@ class Installer
         }
 
         // Merge other modules and Maginium modules
-        return array_merge($coreModules, $targetedModules);
+        return Arr::merge($coreModules, $targetedModules);
     }
 
     /**

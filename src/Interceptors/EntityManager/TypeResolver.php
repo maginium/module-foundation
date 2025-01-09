@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Interceptors\EntityManager;
 
-use Exception;
 use Magento\Framework\EntityManager\MetadataPool;
 use Magento\Framework\EntityManager\TypeResolver as BaseTypeResolver;
 use Magento\SalesRule\Api\Data\RuleInterface;
 use Magento\SalesRule\Model\Rule;
 use Magento\SalesRule\Model\Rule\Interceptor;
 use Magento\SalesRule\Model\Rule\Proxy;
+use Maginium\Foundation\Exceptions\Exception;
 use Maginium\Framework\Support\Reflection;
 
 /**

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Abstracts\Observer;
 
-use Exception;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Maginium\Foundation\Exceptions\Exception;
 use Maginium\Framework\Support\DataObject;
 use Maginium\Framework\Support\Facades\Log;
 use Maginium\Framework\Support\Validator;

@@ -78,7 +78,7 @@ class Exception extends BaseException
     }
 
     /**
-     * Static factory method to create a new Exception instance.
+     * Static factory method to create a Exception::make instance.
      *
      * This method provides a convenient way to instantiate the Exception class with
      * additional parameters like HTTP status code, context, etc.
@@ -102,7 +102,7 @@ class Exception extends BaseException
             $message = __($message);
         }
 
-        // Create and return a new Exception instance with the provided parameters
+        // Create and return a Exception::make instance with the provided parameters
         return new self($message, $cause, $statusCode, $code, $context);
     }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Models;
 
-use Exception;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\File\Name;
@@ -14,6 +13,7 @@ use Magento\Framework\UrlInterface;
 use Magento\MediaStorage\Helper\File\Storage\Database;
 use Magento\MediaStorage\Model\File\Uploader;
 use Magento\MediaStorage\Model\File\UploaderFactory;
+use Maginium\Foundation\Exceptions\Exception;
 use Maginium\Framework\Support\Facades\Log;
 use Maginium\Framework\Support\Facades\StoreManager;
 use Maginium\Store\Models\Store;

@@ -8,6 +8,7 @@ use Magento\Elasticsearch\Model\Adapter\BatchDataMapper\DataMapperResolver as Ba
 use Maginium\Foundation\Exceptions\InvalidArgumentException;
 use Maginium\Foundation\Interfaces\DataSourceInterface;
 use Maginium\Framework\Database\Interfaces\Data\ModelInterface;
+use Maginium\Framework\Support\Arr;
 use Maginium\Framework\Support\DataObject;
 use Maginium\Framework\Support\Facades\Concurrency;
 use Maginium\Framework\Support\Php;
@@ -159,7 +160,7 @@ abstract class DataSourceResolver extends BaseDataSourceResolver
         foreach ($results as $index => $result) {
             // Get the data key corresponding to the current result's index.
             // Use 'default' if no key is found.
-            $dataKey = $dataKeys[array_keys($dataKeys)[$index]] ?? 'default';
+            $dataKey = $dataKeys[Arr::keys($dataKeys)[$index]] ?? 'default';
 
             // Merge the result into the document data using the data key.
             $documentData->setData($dataKey, $this->mergeResults([$result]));
