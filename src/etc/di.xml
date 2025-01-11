@@ -48,4 +48,26 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- Fix Symfony\VarDumper 'Missing argument $host' error -->
+    <virtualType name="dumpServer" type="Symfony\Component\VarDumper\Server\DumpServer">
+        <arguments>
+            <argument xsi:type="string" name="host">tcp://127.0.0.1:9912</argument>
+        </arguments>
+    </virtualType>
+    <type name="Maginium\Foundation\Console\ServerDumpCommand">
+        <arguments>
+            <argument xsi:type="object" name="server">dumpServer</argument>
+        </arguments>
+    </type>
+
+    <!-- Commands Plugin Configuration -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument xsi:type="array" name="commands">
+                <!-- Module -->
+                <item xsi:type="object" name="dump_server">Maginium\Foundation\Console\ServerDumpCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

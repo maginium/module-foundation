@@ -7,6 +7,7 @@ namespace Maginium\Foundation\Concerns;
 use Maginium\Framework\Config\Enums\ConfigDrivers;
 use Maginium\Framework\Support\Facades\Config;
 use Maginium\Framework\Support\Str;
+use Maginium\Framework\Support\Validator;
 use Throwable;
 
 /**
@@ -120,7 +121,7 @@ trait ResolvesDumpSource
             // Check the trace files against the adjustable traces and adjust the trace level if needed
             foreach (self::$adjustableTraces as $name => $key) {
                 // Check if the file ends with the given trace name and apply the level adjustment
-                if (str_ends_with($traceFile['file'], str_replace('/', DIRECTORY_SEPARATOR, $name))) {
+                if (str_ends_with($traceFile['file'], Str::replace('/', DIRECTORY_SEPARATOR, $name))) {
                     $sourceKey = $traceKey + $key;
 
                     break;
@@ -172,7 +173,7 @@ trait ResolvesDumpSource
     {
         try {
             // Get the configured editor from the app configuration
-            $editor = Config::driver(ConfigDrivers::ENV)->getString('app.editor', null);
+            $editor = Config::driver(ConfigDrivers::ENV)->getString('app.editor', 'vscode');
         } catch (Throwable) {
             // Ignore any exceptions while fetching the editor config
         }
@@ -183,16 +184,16 @@ trait ResolvesDumpSource
         }
 
         // Get the href format for the editor (fall back to default if not set)
-        $href = is_array($editor) && isset($editor['href'])
+        $href = Validator::isArray($editor) && isset($editor['href'])
             ? $editor['href']
             : ($this->editorHrefs[$editor['name'] ?? $editor] ?? Str::format('%s://open?file={file}&line={line}', $editor['name'] ?? $editor));
 
         // If a base path is configured, adjust the file path
         if ($basePath = $editor['base_path'] ?? false) {
-            $file = str_replace($this->basePath, $basePath, $file);
+            $file = Str::replace($this->basePath, $basePath, $file);
         }
 
         // Replace the placeholders in the href with the file and line values
-        return str_replace(['{file}', '{line}'], [$file, $line], $href);
+        return Str::replace(['{file}', '{line}'], [$file, $line], $href);
     }
 }

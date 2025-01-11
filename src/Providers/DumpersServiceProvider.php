@@ -12,6 +12,7 @@ use Illuminate\Database\Grammar;
 use Maginium\Framework\Console\CliDumper;
 use Maginium\Framework\Support\Debug\HtmlDumper;
 use Maginium\Framework\Support\ServiceProvider;
+use Maginium\Framework\Support\Validator;
 use Symfony\Component\VarDumper\Caster\StubCaster;
 use Symfony\Component\VarDumper\Cloner\AbstractCloner;
 
@@ -70,7 +71,16 @@ class DumpersServiceProvider extends ServiceProvider
 
         // Fetch the format from the environment variable `VAR_DUMPER_FORMAT`
         // Defaults to null if not set
-        $format = $_SERVER['VAR_DUMPER_FORMAT'] ?? null;
+        $format = $_SERVER['VAR_DUMP_FORMAT'] ?? null;
+
+        // Fetch the server TCP from the environment variable `VAR_DUMPER_SERVER`
+        // Defaults to '127.0.0.1:9912' if not set
+        $server = $_SERVER['VAR_DUMP_SERVER'] ?? 'tcp://127.0.0.1:9912';
+
+        // Store the server value back into the `$_SERVER` superglobal if it's set.
+        if ($server) {
+            $_SERVER['VAR_DUMPER_SERVER'] = $server;
+        }
 
         // Choose the appropriate dumper based on the format or PHP environment
         match (true) {
@@ -84,11 +94,11 @@ class DumpersServiceProvider extends ServiceProvider
             $format === 'html' => HtmlDumper::register(BP),
 
             // If the format is a TCP URL, no action is taken (likely for external TCP-based connections)
-            $format && parse_url($format, PHP_URL_SCHEME) === 'tcp' => null,
+            $format && parse_url($format, PHP_URL_SCHEME) === 'tcp' => $server,
 
             // Default case: Register the CLI dumper for CLI environments,
             // or the HTML dumper for all other environments (e.g., web browsers)
-            default => in_array(PHP_SAPI, ['cli', 'phpdbg']) ? CliDumper::register(BP) : HtmlDumper::register(BP),
+            default => Validator::inArray(PHP_SAPI, ['cli', 'phpdbg']) ? CliDumper::register(BP) : HtmlDumper::register(BP),
         };
     }
 }
