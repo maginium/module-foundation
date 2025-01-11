@@ -9,6 +9,7 @@ use Magento\Framework\Exception\ConfigurationMismatchException;
 use Maginium\Foundation\Exceptions\InvalidArgumentException;
 use Maginium\Foundation\Interfaces\DataSourceInterface;
 use Maginium\Framework\Support\Arr;
+use Maginium\Framework\Support\DataObject;
 use Maginium\Framework\Support\Facades\Container;
 use Maginium\Framework\Support\Reflection;
 use Maginium\Framework\Support\Str;
@@ -52,6 +53,9 @@ abstract class DatasourceRegistry extends Collection
     {
         // Process the datasources using the separate method
         $this->processDataSources($items);
+
+        // Sort all data sources by their sort order.
+        $this->sortDataSources($this->items);
     }
 
     /**
@@ -100,11 +104,8 @@ abstract class DatasourceRegistry extends Collection
         // Retrieve all data sources associated with the given model type.
         $entityDataSources = $this->get($entity);
 
-        // Sort all data sources by their sort order.
-        $sortedDataSources = $this->sortDataSources($entityDataSources);
-
         // Iterate over each sorted data source and instantiate them.
-        foreach ($sortedDataSources as $entityKey => $dataSource) {
+        foreach ($entityDataSources as $entityKey => $dataSource) {
             // Extract the data source class name from the definition.
             $dataSourceInstance = $dataSource[static::DATA_SOURCE_CLASS] ?? $dataSource;
 
@@ -208,9 +209,9 @@ abstract class DatasourceRegistry extends Collection
      *
      * @param array $dataSources The array of data source configurations.
      *
-     * @return array Sorted data source configurations.
+     * @return void
      */
-    private function sortDataSources(array $dataSources): array
+    private function sortDataSources(array $dataSources): void
     {
         // Ensure each data source has a consistent structure with class name and sort order.
         foreach ($dataSources as $key => &$dataSource) {
@@ -221,7 +222,7 @@ abstract class DatasourceRegistry extends Collection
         uasort($dataSources, function($a, $b) {
             // Check if both $a and $b are not arrays
             if (! Validator::isArray($a) && ! Validator::isArray($b)) {
-                return $a[static::SORT_ORDER] <=> $b[static::SORT_ORDER];
+                return $a->getSortOrder() <=> $b->getSortOrder();
             }
 
             // Return 0 if either $a or $b is an array (no sorting)
@@ -231,8 +232,8 @@ abstract class DatasourceRegistry extends Collection
         // Recursively sort any nested data sources.
         $this->sortNestedDataMappers($dataSources);
 
-        // Return the sorted data source configurations.
-        return $dataSources;
+        // Set the sorted data source configurations.
+        $this->items = $dataSources;
     }
 
     /**
@@ -240,16 +241,16 @@ abstract class DatasourceRegistry extends Collection
      *
      * @param DataSource $class The class of the data source.
      *
-     * @return array A structured array containing the class name, sort order, and data source key.
+     * @return DataObject A structured array containing the class name, sort order, and data source key.
      */
-    private function createItem(DataSource $class): array
+    private function createItem(mixed $class): DataObject
     {
         // Return the structured data source item.
-        return [
+        return DataObject::make([
             static::DATA_SOURCE_CLASS => $class,
             static::KEY => $this->getDataKey($class),
-            static::SORT_ORDER => $this->getSortOrder($class),
-        ];
+            Str::snake(static::SORT_ORDER) => $this->getSortOrder($class),
+        ]);
     }
 
     /**
@@ -263,10 +264,10 @@ abstract class DatasourceRegistry extends Collection
      *
      * @return string The key from the data source or a derived key based on the class name.
      */
-    private function getDataKey(DataSource $dataSource): string
+    private function getDataKey(mixed $dataSource): string
     {
         // If the 'key' exists and is not empty, return it; otherwise, return the class name in lowercase.
-        return Reflection::propertyExists($dataSource, 'key') ? $dataSource->key : Str::lower($this->getSourceName($dataSource));
+        return Reflection::propertyExists($dataSource, static::KEY) ? $dataSource->key : Str::lower($this->getSourceName($dataSource));
     }
 
     /**
@@ -276,10 +277,10 @@ abstract class DatasourceRegistry extends Collection
      *
      * @return int The sort order, defaulting to 999 if not set.
      */
-    private function getSortOrder(DataSource $dataSource): int
+    private function getSortOrder(mixed $dataSource): int
     {
         // Return the sort order if it exists, otherwise default to 999.
-        return Reflection::propertyExists($dataSource, 'sortOrder') ? $dataSource->sortOrder : 999;
+        return Reflection::propertyExists($dataSource, static::SORT_ORDER) ? $dataSource->sortOrder : 999;
     }
 
     /**
@@ -302,18 +303,29 @@ abstract class DatasourceRegistry extends Collection
      * Retrieves the base name of the data source class.
      *
      * This method uses PHP's `get_class_basename` function to get the class name
-     * of the data source without the namespace.
+     * of the data source without the namespace. It also retrieves the key
+     * associated with the data source value in the `items` array.
      *
-     * @param DataSource $dataSource The data source object.
+     * @param mixed $dataSource The data source object.
+     *
+     * @throws InvalidArgumentException If the data source is not found in the items array.
      *
      * @return string The base name of the class (e.g., "SalesOrderData").
      */
-    private function getSourceName(DataSource $dataSource): string
+    private function getSourceName(mixed $dataSource): string
     {
+        // Find the key corresponding to the data source value in the items array.
+        $key = Arr::search($dataSource, $this->items, true);
+
+        // If the key is not found, throw an exception or handle the error.
+        if ($key === false) {
+            throw new InvalidArgumentException('Data source not found in items array.');
+        }
+
         // Get the class name without the namespace.
         $className = Reflection::getClassBasename($dataSource::class);
 
         // Return the base name of the class (e.g., "SalesOrderData").
-        return $className;
+        return $key ?? $className;
     }
 }

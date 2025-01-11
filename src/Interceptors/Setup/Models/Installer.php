@@ -74,6 +74,7 @@ use Magento\Store\Model\Store;
 use Maginium\Foundation\Exceptions\Exception;
 use Maginium\Foundation\Exceptions\LogicException;
 use Maginium\Framework\Support\Arr;
+use Maginium\Framework\Support\Validator;
 use ReflectionException;
 use Zend_Db_Exception;
 
@@ -510,7 +511,7 @@ class Installer
     {
         $this->checkInstallationFilePermissions();
         $this->createModulesConfig($data);
-        $userData = is_array($data) ? $data : $data->getArrayCopy();
+        $userData = Validator::isArray($data) ? $data : $data->getArrayCopy();
         $this->setupConfigModel->process($userData);
         $deploymentConfigData = $this->deploymentConfig->get(ConfigOptionsListConstants::CONFIG_PATH_CRYPT_KEY);
 
@@ -1841,7 +1842,7 @@ class Installer
 
         // unload Magento autoloader because it may be using compiled definition
         foreach (spl_autoload_functions() as $autoloader) {
-            if (is_array($autoloader) && $autoloader[0] instanceof Autoloader) {
+            if (Validator::isArray($autoloader) && $autoloader[0] instanceof Autoloader) {
                 spl_autoload_unregister([$autoloader[0], $autoloader[1]]);
 
                 break;

@@ -7,6 +7,7 @@ namespace Maginium\Foundation\Concerns;
 use Magento\Framework\Phrase;
 use Maginium\Framework\Actions\Concerns\AsObject;
 use Maginium\Framework\Support\Arr;
+use Maginium\Framework\Support\Validator;
 
 /**
  * Trait HasOptionSource.
@@ -34,7 +35,7 @@ trait HasOptionSource
         // Loop through each item in the array
         foreach ($this->toArray() as $key => $data) {
             // Check if the current item is an associative array with 'value' and 'label'
-            if (is_array($data) && isset($data['value'], $data['label'])) {
+            if (Validator::isArray($data) && isset($data['value'], $data['label'])) {
                 $options[] = [
                     'label' => $data['label'] instanceof Phrase ? $data['label'] : __($data['label']), // The display label of the option.
                     'value' => $data['value'], // Ensure the value is translated if it's a string

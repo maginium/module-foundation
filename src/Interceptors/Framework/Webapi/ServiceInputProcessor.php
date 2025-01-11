@@ -9,6 +9,7 @@ use Magento\Framework\Exception\SerializationException;
 use Magento\Framework\Webapi\ServiceInputProcessor as BaseServiceInputProcessor;
 use Maginium\Framework\Dto\DataTransferObject;
 use Maginium\Framework\Support\Reflection;
+use Maginium\Framework\Support\Validator;
 use Override;
 use SimpleXMLElement;
 
@@ -37,7 +38,7 @@ class ServiceInputProcessor extends BaseServiceInputProcessor
     protected function _createFromArray($className, $data): object
     {
         // Ensure the provided data is an array
-        $data = is_array($data) ? $data : [];
+        $data = Validator::isArray($data) ? $data : [];
         $className = (string)$className;
 
         // Prevent deserialization of invalid data types

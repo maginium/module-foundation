@@ -8,6 +8,7 @@ use Magento\Config\Model\Config\Backend\Image as BaseImage;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Exception\LocalizedException;
 use Maginium\Framework\Support\Path;
+use Maginium\Framework\Support\Validator;
 
 /**
  * Class Image
@@ -37,7 +38,7 @@ class Image extends BaseImage
         $file = $this->getFileData();
 
         // Check if delete flag is set
-        $deleteFlag = is_array($value) && ! empty($value['delete']);
+        $deleteFlag = Validator::isArray($value) && ! empty($value['delete']);
 
         // If no new file is uploaded
         if (empty($file)) {

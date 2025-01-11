@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Abstracts\Observer;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Maginium\Foundation\Exceptions\Exception;
+use Maginium\Framework\Support\Collection;
 use Maginium\Framework\Support\DataObject;
 use Maginium\Framework\Support\Facades\Log;
+use Maginium\Framework\Support\Reflection;
 use Maginium\Framework\Support\Validator;
 
 /**
@@ -103,6 +106,32 @@ abstract class AbstractObserver implements ObserverInterface
         $this->eventName = $this->event->getName();
 
         // Retrieve the associated data object from the event.
-        $this->data = DataObject::make($observer->getData(static::DATA));
+        $this->data = $this->prepareData($observer->getData(static::DATA));
+    }
+
+    /**
+     * Prepares the data object by converting it into an appropriate structure.
+     *
+     * This method checks if the data object implements certain interfaces or methods
+     * to convert it to an array and then wraps it in a DataObject instance.
+     *
+     * @param mixed $data The raw data to be processed.
+     *
+     * @return DataObject The prepared data object.
+     */
+    private function prepareData(mixed $data): DataObject
+    {
+        // Check if the data is an instance of Arrayable or Collection and convert to array.
+        if ($data instanceof Arrayable || $data instanceof Collection) {
+            $data = $data->toArray();
+        }
+
+        // Check if the data object has a "toArray" method using reflection and convert to array.
+        if (Validator::isObject($data) && Reflection::methodExists($data, 'toArray')) {
+            $data = $data->toArray();
+        }
+
+        // Wrap the data in a DataObject for consistency and return.
+        return DataObject::make($data);
     }
 }
