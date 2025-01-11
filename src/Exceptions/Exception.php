@@ -50,8 +50,8 @@ class Exception extends BaseException
      */
     public function __construct(
         Phrase|string|null $message = null,
-        ?Throwable $cause = null,
         ?int $statusCode = null,
+        ?Throwable $cause = null,
         string|int|null $code = null,
         ?array $context = null,
     ) {
@@ -103,7 +103,7 @@ class Exception extends BaseException
         }
 
         // Create and return a Exception::make instance with the provided parameters
-        return new self($message, $cause, $statusCode, $code, $context);
+        return new static($message, $statusCode, $cause, $code, $context);
     }
 
     /**

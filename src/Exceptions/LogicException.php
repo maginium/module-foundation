@@ -37,7 +37,7 @@ class LogicException extends LocalizedException
         ?array $context = null,
     ) {
         // If message is a string, make it an instance of __() for translation
-        if (is_string($message)) {
+        if (Validator::isString($message)) {
             $message = __($message); // Assuming __() is a translation function
         }
 

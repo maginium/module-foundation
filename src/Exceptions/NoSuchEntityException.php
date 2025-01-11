@@ -39,10 +39,10 @@ class NoSuchEntityException extends LocalizedException
         // Call the parent constructor with necessary parameters
         parent::__construct(
             $message, // The error message
-            $cause,   // The cause of the error
+            $cause, // The cause of the error
             $statusCode ?? HttpStatusCode::NOT_FOUND, // Default to 404 if no statusCode provided
-            $code,    // The error code
-            $context,  // Additional context
+            $code, // The error code
+            $context, // Additional context
         );
     }
 

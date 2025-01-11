@@ -208,7 +208,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
      */
     public function toJson($options = 0)
     {
-        return Json::encode($this->toArray(), JSON_THROW_ON_ERROR);
+        return Json::encode($this->toArray());
     }
 
     /**
@@ -524,7 +524,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
                 foreach ($argument as $index => $obj) {
                     if (Validator::isArray($obj)) {
                         $value = 'array(' . count($obj) . ')';
-                    } elseif (is_object($obj)) {
+                    } elseif (Validator::isObject($obj)) {
                         $value = 'object(' . get_class($obj) . ')';
                     } elseif (Validator::isInt($obj)) {
                         $value = $obj;
@@ -542,7 +542,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
                 } else {
                     $arg = 'array(0)';
                 }
-            } elseif (is_object($argument)) {
+            } elseif (Validator::isObject($argument)) {
                 $arg = 'object(' . get_class($argument) . ')';
             } elseif ($argument === null) {
                 $arg = 'null';

@@ -6,6 +6,7 @@ namespace Maginium\Foundation\Exceptions;
 
 use Magento\Framework\Phrase;
 use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Framework\Support\Validator;
 use Throwable;
 
 /**
@@ -37,7 +38,7 @@ class RuntimeException extends LocalizedException
         ?array $context = null,
     ) {
         // If message is a string, make it an instance of __() for translation
-        if (is_string($message)) {
+        if (Validator::isString($message)) {
             $message = __($message); // Assuming __() is a translation function
         }
 
