@@ -16,7 +16,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self GUEST() Represents a guest.
  * @method static self ADMIN() Represents an admin.
  */
-class UserType extends Enum
+class UserTypes extends Enum
 {
     /**
      * Represents a user.

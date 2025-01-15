@@ -16,7 +16,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self DESKTOP() Represents a desktop device.
  * @method static self UNKNOWN() Represents an unknown device type.
  */
-class DeviceType extends Enum
+class DeviceTypes extends Enum
 {
     /**
      * Represents a mobile device.

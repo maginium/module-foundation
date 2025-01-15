@@ -9,17 +9,18 @@ use Maginium\Framework\Enum\Attributes\Label;
 use Maginium\Framework\Enum\Enum;
 
 /**
- * Enum for cache time-to-live (TTL) values in seconds.
+ * Enum for various time durations in seconds.
  *
- * This enum defines various time-to-live values for cache expiration, expressed in seconds.
+ * This enum defines different time units expressed in seconds,
+ * which can be used for caching, delays, or other time-related operations.
  *
- * @method static self SECOND() Represents a time-to-live value of one second (1).
- * @method static self MINUTE() Represents a time-to-live value of one minute (60).
- * @method static self HOUR() Represents a time-to-live value of one hour (3600).
- * @method static self DAY() Represents a time-to-live value of one day (86400).
- * @method static self WEEK() Represents a time-to-live value of one week (604800).
- * @method static self MONTH() Represents a time-to-live value of one month (2592000).
- * @method static self YEAR() Represents a time-to-live value of one year (31536000).
+ * @method static self SECOND() Represents a time duration of one second (1).
+ * @method static self MINUTE() Represents a time duration of one minute (60).
+ * @method static self HOUR() Represents a time duration of one hour (3600).
+ * @method static self DAY() Represents a time duration of one day (86400).
+ * @method static self WEEK() Represents a time duration of one week (604800).
+ * @method static self MONTH() Represents a time duration of one month (2592000).
+ * @method static self YEAR() Represents a time duration of one year (31536000).
  * @method static int second() Get the value for one second.
  * @method static int seconds(int $seconds) Get the value for the specified number of seconds.
  * @method static int minute() Get the value for one minute.
@@ -35,55 +36,55 @@ use Maginium\Framework\Enum\Enum;
  * @method static int year() Get the value for one year (365 days).
  * @method static int years(int $years) Get the value for the specified number of years.
  */
-class CacheTTL extends Enum
+class Durations extends Enum
 {
     /**
-     * Represents a time-to-live value of one second.
+     * Represents a time duration of one second.
      */
     #[Label('One Second')]
-    #[Description('Cache entry will expire after one second.')]
+    #[Description('Represents a duration of one second.')]
     public const SECOND = 1;
 
     /**
-     * Represents a time-to-live value of one minute (60 seconds).
+     * Represents a time duration of one minute (60 seconds).
      */
     #[Label('One Minute')]
-    #[Description('Cache entry will expire after one minute.')]
+    #[Description('Represents a duration of one minute.')]
     public const MINUTE = 60;
 
     /**
-     * Represents a time-to-live value of one hour (3600 seconds).
+     * Represents a time duration of one hour (3600 seconds).
      */
     #[Label('One Hour')]
-    #[Description('Cache entry will expire after one hour.')]
+    #[Description('Represents a duration of one hour.')]
     public const HOUR = 3600;
 
     /**
-     * Represents a time-to-live value of one day (86400 seconds).
+     * Represents a time duration of one day (86400 seconds).
      */
     #[Label('One Day')]
-    #[Description('Cache entry will expire after one day.')]
+    #[Description('Represents a duration of one day.')]
     public const DAY = 86400;
 
     /**
-     * Represents a time-to-live value of one week (604800 seconds, 7 days).
+     * Represents a time duration of one week (604800 seconds, 7 days).
      */
     #[Label('One Week')]
-    #[Description('Cache entry will expire after one week.')]
+    #[Description('Represents a duration of one week (7 days).')]
     public const WEEK = 604800;
 
     /**
-     * Represents a time-to-live value of one month (2592000 seconds, 30 days).
+     * Represents a time duration of one month (2592000 seconds, 30 days).
      */
     #[Label('One Month')]
-    #[Description('Cache entry will expire after one month.')]
+    #[Description('Represents a duration of one month.')]
     public const MONTH = 2592000;
 
     /**
-     * Represents a time-to-live value of one year (31536000 seconds, 365 days).
+     * Represents a time duration of one year (31536000 seconds, 365 days).
      */
     #[Label('One Year')]
-    #[Description('Cache entry will expire after one year.')]
+    #[Description('Represents a duration of one year.')]
     public const YEAR = 31536000;
 
     /**

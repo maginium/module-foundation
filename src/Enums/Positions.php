@@ -20,7 +20,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self BOTTOM_LEFT() Used to align or place an element at the bottom-left corner.
  * @method static self BOTTOM_RIGHT() Used to align or place an element at the bottom-right corner.
  */
-class Position extends Enum
+class Positions extends Enum
 {
     /**
      * Left position.

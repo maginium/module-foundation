@@ -45,7 +45,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self PINK_500() Represents the regular pink color (#ed64a6).
  * @method static self PINK_900() Represents the darkest pink color (#702459).
  */
-class Color extends Enum
+class Colors extends Enum
 {
     /**
      * Light Gray color.

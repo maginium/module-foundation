@@ -38,7 +38,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self WEBP() Represents a WebP image file with the .webp extension.
  * @method static self FLF() Represents a Figlet Font file with the .flf extension.
  */
-class FileExtension extends Enum
+class FileExtensions extends Enum
 {
     /**
      * Text file extension.

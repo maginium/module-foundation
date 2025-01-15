@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Maginium\Foundation\Exceptions;
 
 use Magento\Framework\Phrase;
-use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Foundation\Enums\HttpStatusCodes;
 use Throwable;
 
 /**
@@ -40,7 +40,7 @@ class AuthenticationException extends LocalizedException
         parent::__construct(
             $message, // The error message
             $cause,   // The cause of the error
-            $statusCode ?? HttpStatusCode::UNAUTHORIZED, // Default to 401 if no statusCode provided
+            $statusCode ?? HttpStatusCodes::UNAUTHORIZED, // Default to 401 if no statusCode provided
             $code,    // The error code
             $context,  // Additional context
         );

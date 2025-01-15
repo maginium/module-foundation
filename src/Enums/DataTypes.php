@@ -23,7 +23,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self CALLABLE() Callable data type.
  * @method static self MIXED() Mixed data type.
  */
-class DataType extends Enum
+class DataTypes extends Enum
 {
     /**
      * String data type.

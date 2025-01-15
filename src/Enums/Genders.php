@@ -16,7 +16,7 @@ use Maginium\Framework\Support\Str;
  * @method static self FEMALE() Represents female gender.
  * @method static self OTHER() Represents other gender.
  */
-class Gender extends Enum
+class Genders extends Enum
 {
     /**
      * The attribute code for the gender attribute.

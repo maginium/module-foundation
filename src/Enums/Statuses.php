@@ -21,7 +21,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self YES() Represents the affirmative status constant (binary).
  * @method static self NO() Represents the negative status constant (binary).
  */
-class Status extends Enum
+class Statuses extends Enum
 {
     /**
      * Status enabled constant.

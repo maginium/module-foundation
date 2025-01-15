@@ -7,7 +7,7 @@ namespace Maginium\Foundation\Models\Config\Source;
 use Illuminate\Contracts\Support\Arrayable;
 use Magento\Framework\Data\OptionSourceInterface;
 use Maginium\Foundation\Concerns\HasOptionSource;
-use Maginium\Foundation\Enums\GoogleFont;
+use Maginium\Foundation\Enums\GoogleFonts as GoogleFontsEnum;
 
 /**
  * Google Fonts Configuration Source.
@@ -24,7 +24,7 @@ class GoogleFonts implements Arrayable, OptionSourceInterface
      * Retrieve Google Font options as an associative array.
      *
      * This method fetches the available Google Font options defined in the
-     * GoogleFont enum class, returning them in a "key-value" format.
+     * GoogleFontsEnum enum class, returning them in a "key-value" format.
      *
      * @return array<string, string> An associative array of Google Font options,
      *                               where the key represents the font identifier
@@ -32,6 +32,6 @@ class GoogleFonts implements Arrayable, OptionSourceInterface
      */
     public function toArray(): array
     {
-        return GoogleFont::asSelectArray();
+        return GoogleFontsEnum::asSelectArray();
     }
 }

@@ -576,7 +576,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self YO_NG() Yoruba (Nigeria)
  * @method static self ZU_ZA() Zulu (South Africa)
  */
-class Locale extends Enum
+class Locales extends Enum
 {
     /**
      * Afrikaans (Namibia).

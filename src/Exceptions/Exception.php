@@ -6,7 +6,7 @@ namespace Maginium\Foundation\Exceptions;
 
 use Exception as BaseException;
 use Magento\Framework\Phrase;
-use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Foundation\Enums\HttpStatusCodes;
 use Maginium\Framework\Support\Validator;
 use Throwable;
 
@@ -56,7 +56,7 @@ class Exception extends BaseException
         ?array $context = null,
     ) {
         // Assign the provided or default HTTP status code
-        $this->statusCode = $statusCode ?? HttpStatusCode::INTERNAL_SERVER_ERROR;
+        $this->statusCode = $statusCode ?? HttpStatusCodes::INTERNAL_SERVER_ERROR;
 
         // Assign additional context data
         $this->context = $context;

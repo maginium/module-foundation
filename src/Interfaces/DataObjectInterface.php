@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Maginium\Foundation\Interfaces;
 
-use ArrayAccess;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Universal data container with array access implementation.
  */
-interface DataObjectInterface extends ArrayAccess
+interface DataObjectInterface extends Arrayable
 {
     /**
      * Add data to the object.

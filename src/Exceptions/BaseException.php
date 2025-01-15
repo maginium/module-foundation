@@ -9,7 +9,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonException;
 use Magento\Framework\Phrase;
-use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Foundation\Enums\HttpStatusCodes;
 use Maginium\Foundation\Solutions\Solution;
 use Maginium\Framework\Support\Arr;
 use Maginium\Framework\Support\Facades\Container;
@@ -135,7 +135,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
         $this->requestId = Str::uuid()->toString();
 
         // Assign the error code; if none is provided, derive it from the HTTP status label.
-        $this->code = $code ?? HttpStatusCode::getLabel($statusCode);
+        $this->code = $code ?? HttpStatusCodes::getLabel($statusCode);
 
         // Store the solution if provided for the error instance.
         $this->solution = $solution;

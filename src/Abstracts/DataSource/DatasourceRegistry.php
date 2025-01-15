@@ -243,7 +243,7 @@ abstract class DatasourceRegistry extends Collection
      *
      * @return DataObject A structured array containing the class name, sort order, and data source key.
      */
-    private function createItem(mixed $class): DataObject
+    private function createItem(object $class): DataObject
     {
         // Return the structured data source item.
         return DataObject::make([
@@ -264,7 +264,7 @@ abstract class DatasourceRegistry extends Collection
      *
      * @return string The key from the data source or a derived key based on the class name.
      */
-    private function getDataKey(mixed $dataSource): string
+    private function getDataKey(object $dataSource): string
     {
         // If the 'key' exists and is not empty, return it; otherwise, return the class name in lowercase.
         return Reflection::propertyExists($dataSource, static::KEY) ? $dataSource->key : Str::lower($this->getSourceName($dataSource));
@@ -277,7 +277,7 @@ abstract class DatasourceRegistry extends Collection
      *
      * @return int The sort order, defaulting to 999 if not set.
      */
-    private function getSortOrder(mixed $dataSource): int
+    private function getSortOrder(object $dataSource): int
     {
         // Return the sort order if it exists, otherwise default to 999.
         return Reflection::propertyExists($dataSource, static::SORT_ORDER) ? $dataSource->sortOrder : 999;

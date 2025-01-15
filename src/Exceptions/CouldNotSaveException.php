@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Maginium\Foundation\Exceptions;
 
 use Magento\Framework\Phrase;
-use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Foundation\Enums\HttpStatusCodes;
 use Throwable;
 
 /**
@@ -40,7 +40,7 @@ class CouldNotSaveException extends LocalizedException
         parent::__construct(
             $message, // The error message
             $cause,   // The cause of the error
-            $statusCode ?? HttpStatusCode::INTERNAL_SERVER_ERROR, // Default to 500 if no statusCode provided
+            $statusCode ?? HttpStatusCodes::INTERNAL_SERVER_ERROR, // Default to 500 if no statusCode provided
             $code,    // The error code
             $context,   // Additional context
         );

@@ -19,7 +19,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self OPTIONS() The OPTIONS method is used to describe the communication options for the target resource.
  * @method static self HEAD() The HEAD method asks for a response identical to that of a GET request, but without the response body.
  */
-class HttpMethod extends Enum
+class HttpMethods extends Enum
 {
     /**
      * The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.

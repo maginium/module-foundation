@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Maginium\Foundation\Exceptions;
 
 use Magento\Framework\Phrase;
-use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Foundation\Enums\HttpStatusCodes;
+use Maginium\Framework\Support\Validator;
 use Throwable;
 
 /**
@@ -45,7 +46,7 @@ class InvalidArgumentException extends LocalizedException
         parent::__construct(
             $message, // The error message
             $cause,   // The cause of the error
-            $statusCode ?? HttpStatusCode::BAD_REQUEST, // Default to 400 Bad Request if no statusCode provided
+            $statusCode ?? HttpStatusCodes::BAD_REQUEST, // Default to 400 Bad Request if no statusCode provided
             $code,    // The error code
             $context,   // Additional context
         );

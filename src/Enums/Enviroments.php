@@ -17,8 +17,9 @@ use Maginium\Framework\Enum\Enum;
  * @method static self STAGING() Staging environment.
  * @method static self PRODUCTION() Production environment.
  * @method static self DEVELOPMENT() Development environment.
+ * @method static self LOCAL() Local environment.
  */
-class Enviroment extends Enum
+class Enviroments extends Enum
 {
     /**
      * Test environment.
@@ -47,4 +48,11 @@ class Enviroment extends Enum
     #[Label('Development')]
     #[Description('Represents the development environment, where new features and updates are developed and tested.')]
     public const DEVELOPMENT = 'development';
+
+    /**
+     * Development environment.
+     */
+    #[Label('Local')]
+    #[Description('Represents the local environment, where new features and updates are developed and tested.')]
+    public const LOCAL = 'local';
 }

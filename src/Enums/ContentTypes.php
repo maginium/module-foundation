@@ -45,7 +45,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self APPLICATION_VND_AIRZIP_FILESECURE_AZS() Represents application/vnd.airzip.filesecure.azs content type.
  * @method static self APPLICATION_VND_AMAZON_EBOOK() Represents application/vnd.amazon.ebook content type.
  */
-class ContentType extends Enum
+class ContentTypes extends Enum
 {
     /**
      * Text plain content type.

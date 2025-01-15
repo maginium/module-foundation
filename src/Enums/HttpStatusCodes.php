@@ -74,7 +74,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self NOT_EXTENDED() 510 Not Extended
  * @method static self NETWORK_AUTHENTICATION_REQUIRED() 511 Network Authentication Required
  */
-class HttpStatusCode extends Enum
+class HttpStatusCodes extends Enum
 {
     /**
      * Informational 1xx

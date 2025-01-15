@@ -7,7 +7,7 @@ namespace Maginium\Foundation\Models\Config\Source;
 use Illuminate\Contracts\Support\Arrayable;
 use Magento\Framework\Data\OptionSourceInterface;
 use Maginium\Foundation\Concerns\HasOptionSource;
-use Maginium\Foundation\Enums\Characterset as EnumCharacterset;
+use Maginium\Foundation\Enums\Charactersets;
 
 /**
  * Character Set Configuration Source.
@@ -24,7 +24,7 @@ class Characterset implements Arrayable, OptionSourceInterface
      * Retrieve character set options as an associative array.
      *
      * This method fetches the available character set options defined in the
-     * EnumCharacterset enum class, returning them in a "key-value" format.
+     * Charactersets enum class, returning them in a "key-value" format.
      *
      * @return array<string, string> An associative array of character set options,
      *                               where the key represents the character set identifier
@@ -32,6 +32,6 @@ class Characterset implements Arrayable, OptionSourceInterface
      */
     public function toArray(): array
     {
-        return EnumCharacterset::asSelectArray();
+        return Charactersets::asSelectArray();
     }
 }

@@ -6,7 +6,7 @@ namespace Maginium\Foundation\Exceptions;
 
 use Magento\Framework\Phrase;
 use Magento\Framework\Phrase\Renderer\Placeholder;
-use Maginium\Foundation\Enums\HttpStatusCode;
+use Maginium\Foundation\Enums\HttpStatusCodes;
 use Maginium\Framework\Support\Facades\Container;
 use Throwable;
 
@@ -45,8 +45,8 @@ class LocalizedException extends BaseException
         parent::__construct(
             'LocalizedError', // Type of error (usually a predefined constant like 'LocalizedError')
             $message, // The error message
-            $code ?? $statusCode ?? HttpStatusCode::INTERNAL_SERVER_ERROR, // Default to Internal Server Error if not provided
-            $code ?? $statusCode ?? HttpStatusCode::INTERNAL_SERVER_ERROR, // Default to Internal Server Error if not provided
+            $code ?? $statusCode ?? HttpStatusCodes::INTERNAL_SERVER_ERROR, // Default to Internal Server Error if not provided
+            $code ?? $statusCode ?? HttpStatusCodes::INTERNAL_SERVER_ERROR, // Default to Internal Server Error if not provided
             $cause, // The original exception that caused this exception (if any)
             $context, // Additional context or data related to the exception
         );
@@ -92,7 +92,7 @@ class LocalizedException extends BaseException
         // Check if the log message has already been generated.
         if ($this->logMessage === null) {
             /** @var Placeholder $renderer */
-            $renderer = Container::create(className: Placeholder::class);
+            $renderer = Container::make(className: Placeholder::class);
 
             // Render the raw message with the provided parameters, caching the result.
             $this->logMessage = $renderer->render([$this->getRawMessage()], $this->getParameters());

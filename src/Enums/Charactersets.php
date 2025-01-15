@@ -20,7 +20,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self LATIN_EXT() Represents the Latin Extended character set.
  * @method static self VIETNAMESE() Represents the Vietnamese character set.
  */
-class Characterset extends Enum
+class Charactersets extends Enum
 {
     /**
      * Represents the Cyrillic character set.

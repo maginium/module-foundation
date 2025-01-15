@@ -14,7 +14,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self ASC() Ascending order.
  * @method static self DESC() Descending order.
  */
-class SortOrder extends Enum
+class SortOrders extends Enum
 {
     /**
      * Ascending order.

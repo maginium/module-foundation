@@ -96,7 +96,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static MONDAY_TO_FRIDAY_AT_10PM() Executes Monday to Friday at 10 PM.
  * @method static MONDAY_TO_FRIDAY_AT_11PM() Executes Monday to Friday at 11 PM.
  */
-class CronExpression extends Enum
+class CronExpressions extends Enum
 {
     /**
      * Executes every second.

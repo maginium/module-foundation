@@ -860,7 +860,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self ZILLA_SLAB() Zilla Slab
  * @method static self ZILLA_SLAB_HIGHLIGHT() Zilla Slab Highlight
  */
-class GoogleFont extends Enum
+class GoogleFonts extends Enum
 {
     /**
      * ABeeZee.

@@ -15,7 +15,7 @@ use Maginium\Framework\Enum\Enum;
  * @method static self LTR() Left-to-Right text direction. Common in languages like English and most other European languages.
  * @method static self RTL() Right-to-Left text direction. Common in languages like Arabic and Hebrew.
  */
-class Direction extends Enum
+class Directions extends Enum
 {
     /**
      * Left-to-Right text direction.
