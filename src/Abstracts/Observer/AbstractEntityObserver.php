@@ -126,7 +126,7 @@ abstract class AbstractEntityObserver extends AbstractObserver
     {
         try {
             // Construct the getter method name dynamically
-            $methodName = $this->model->getEventObject() ?? 'get' . Str::capital(Reflection::getClassBasename($modelClass));
+            $methodName = 'get' . Str::capital($this->model->getEventObject()) ?? 'get' . Str::capital(Reflection::getClassBasename($modelClass));
 
             // Ensure the event and method exist
             $event = $observer->getEvent();
