@@ -34,6 +34,7 @@ class Solution extends SpatieBaseSolution implements SolutionInterface
             $this->setDocumentationLinks($data[self::LINKS]);
         }
 
+        // Return the current instance to allow method chaining
         return $this;
     }
 }

@@ -314,6 +314,7 @@ class BaseException extends Exception implements Arrayable, Jsonable, ProvidesSo
             return $this->mask;
         }
 
+        // Return the current instance to allow method chaining
         return $this;
     }
 
